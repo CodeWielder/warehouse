@@ -1,3 +1,8 @@
+# Jetbrians
+.idea/libraries/
+.idea/workspace.xml
+*.iml
+
 # Compiled class file
 *.class
 
