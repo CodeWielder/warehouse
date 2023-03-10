@@ -1,4 +1,4 @@
-package com.causes.spark.demo;
+package com.causes.spark.demo.sparklauncher;
 
 import lombok.Data;
 

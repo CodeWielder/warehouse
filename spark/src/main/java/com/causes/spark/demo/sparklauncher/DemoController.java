@@ -1,8 +1,7 @@
-package com.causes.spark.demo;
+package com.causes.spark.demo.sparklauncher;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.*;
 
 @Slf4j
@@ -11,7 +10,6 @@ import org.springframework.web.bind.annotation.*;
 public class DemoController {
 
   @Autowired
-  @Qualifier("baseSparkJob")
   private BaseSparkJob baseSparkJob;
 
   @GetMapping
