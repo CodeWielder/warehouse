@@ -35,7 +35,6 @@ spec:
     matchLabels:
       app: mysql
 
-
 ---
 
 apiVersion: v1
