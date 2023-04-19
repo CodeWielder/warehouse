@@ -1,0 +1,61 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: minio
+
+---
+
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  namespace: minio
+  name: minio-controller
+  labels:
+    app: minio-controller
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: minio
+  template:
+    metadata:
+      name: mino
+      labels:
+        app: minio
+    spec:
+      containers:
+        - name: minio
+          image: minio/minio:RELEASE.2022-10-05T14-58-27Z
+          imagePullPolicy: IfNotPresent
+          env:
+            - name: MINIO_ACCESS_KEY
+              value: 'MINIO_ACCESS_KEY'
+            - name: MINIO_SECRET_KEY
+              value: 'MINIO_SECRET_KEY'
+          command: ['/bin/sh', '-c', 'minio server /data/minio --console-address ":9001"']
+          ports:
+            - containerPort: 9000
+              protocol: TCP
+            - containerPort: 9001
+              protocol: TCP
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: minio-node-port
+  namespace: minio
+spec:
+  selector:
+    app: minio
+  type: NodePort
+  ports:
+    - name: connect
+      port: 19887
+      targetPort: 9000
+      nodePort: 31001
+    - name: ui
+      port: 19888
+      targetPort: 9001
+      nodePort: 31002
